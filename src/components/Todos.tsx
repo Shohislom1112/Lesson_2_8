@@ -10,6 +10,7 @@ const [todos, setTodos] = useState<any[]>([
     title: String,
     complete: Boolean,}
 ]);
+//  loading any;
 // const [error, setError] = useState<Error | null>(null);
 // const [openAdd, setOpenAdd] = useState<boolean>(false);
 // const [openEdit, setOpenEdit] = useState<boolean>(false);
@@ -22,6 +23,7 @@ const [todos, setTodos] = useState<any[]>([
 
 
     const fetchTodos = async (): Promise<void> => {
+      
         setLoading(true);
         try {
           const res = await axios.get<any[]>("http://localhost:3000/Todos");
