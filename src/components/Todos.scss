@@ -1,0 +1,84 @@
+.Todos {
+    .p {
+        font-family: Poppins;
+        font-size: 25px;
+        text-align: center;
+        transition: 2s;
+        &:hover {
+            color: aqua;
+        }
+    }
+    .container {
+        margin: 0 auto;
+        padding: 0 27px;
+        box-sizing: border-box;
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        .cards {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 350px;
+            height: 200px;
+            border-radius: 3px;
+            padding: 25px;
+            background-color: rgb(202, 255, 255);
+            border: thick double #32a1ce;
+            transition: 2s;
+            &:hover {
+            box-shadow: 8px 5px 14px 3px rgb(128, 128, 128);
+                width: 355px;
+                height: 210px;
+                background-color: aqua;
+                border: dashed #32a1ce;
+            }
+            .card1 {
+                display: flex;
+                gap: 25px;
+                align-items: center;
+                justify-content: start;
+                .p1 {
+                    font-family: Poppins;
+                }
+            }
+            .card2 {
+                display: flex;
+                justify-content: space-around;
+                .button1 {
+                    border: thick double blue;
+                    background-color:white;
+                    transition: 1s;
+                    padding: 10px 20px;
+                    border-radius: 10px;
+                    font-family: Poppins;
+                    font-size: 15px;
+                    color: blue;
+                    &:hover {
+                        border: dashed white ;
+                        color: white;
+                        background-color:blue;
+                    }
+                }
+                .button2 {
+                    border: thick double red;
+                    background-color:white;
+                    transition: 1s;
+                    padding: 10px 20px;
+                    border-radius: 10px;
+                    font-family: Poppins;
+                    font-size: 15px;
+                    color: red;
+
+                    &:hover {
+                    color: white;
+                        border: dashed white ;
+
+                        background-color:red;
+                    }
+                }
+            }
+        }
+    }
+}
