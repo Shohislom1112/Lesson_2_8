@@ -79,6 +79,17 @@
                     }
                 }
             }
+            .none  {
+                display: none;
+            }
+            .unput {
+                display: flex;
+                justify-content: space-around;
+                .text {
+                    padding: 2px 3px;
+                }
+            }
+            
         }
     }
 }

@@ -5,13 +5,11 @@ import axios from "axios";
 
 const Todos = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [todos, setTodos] = useState<any[]>([
-    // {/
-    //   id: Number, title: String, complete: Boolean
-    // },
-  ]);
+  const [todos, setTodos] = useState<any[]>([]);
+  const [newData, setNewData] = useState<string>('');
+
   const [edit, setEdit] = useState<string>("");
-//   const [openEdit, setOpenEdit] = useState<boolean>(false);
+
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const fetchTodos = async (): Promise<void> => {
@@ -27,11 +25,50 @@ const Todos = () => {
       setLoading(false);
     }
   };
-  const handleEdit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEdit(e.target.value);
+  const editData = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/Todos/id', {
+        method: 'PUT', // Or POST if your API doesn't support PUT
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ newData })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to edit data');
+      }
+
+      console.log('Data edited successfully');
+    } catch (error) {
+      console.error('Error editing data:', error);
+    }
+  }
+
+
+
+  const deleteData = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/Todos/id', {
+        method: 'DELETE'
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to delete data');
+      }
+
+      console.log('Data deleted successfully');
+    } catch (error) {
+      console.error('Error deleting data:', error);
+    }
   };
+
+
+//   const handleEdit = (e) => {
+//     console.log(e.target.value.id);
+//   };
   const handleDoubleClick = () => {
-    setIsEditing(true);
+    setIsEditing(!isEditing);
   };
 
   useEffect(() => {
@@ -53,11 +90,14 @@ const Todos = () => {
             </div>
             <div className="card2">
               <button className="button1" onClick={handleDoubleClick} >Edit</button>
-              <button className="button2">Delete</button>
+              <button className="button2" onClick={deleteData} >Delete</button>
             </div>
-            <div className="input" onDoubleClick={handleDoubleClick} >
-              <input type="text" id="text" value="text" onChange={handleEdit}  className="text" />
-              
+            <div className={isEditing ? "input" : "none"} > 
+              <input type="text" id="text"
+              value={todos}
+              onChange={(e) => setNewData(e.target.value)}
+              className="text" />
+            <button className="button1"  onClick={editData} > Edit</button>
             </div>
           </div>
         ))}
@@ -65,5 +105,6 @@ const Todos = () => {
     </div>
   );
 };
+
 
 export default Todos;
