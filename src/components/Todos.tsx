@@ -12,6 +12,10 @@ const Todos = () => {
 
   const [isEditing, setIsEditing] = useState<boolean>(false);
 
+  useEffect(() => {
+    fetchTodos();
+  }, []);
+
   const fetchTodos = async (): Promise<void> => {
     setLoading(true);
     try {
@@ -19,9 +23,9 @@ const Todos = () => {
       const data: any[] = res.data;
       setTodos(data);
     } finally {
-      // catch (error) {
-      //   setError(error);
-      // }
+    //   catch (error) {
+    //     setError(error);
+    //   }
       setLoading(false);
     }
   };
@@ -49,7 +53,7 @@ const Todos = () => {
 
   const deleteData = async () => {
     try {
-      const response = await fetch('http://localhost:3000/Todos/id', {
+      const response = await fetch('http://localhost:3000/Todos', {
         method: 'DELETE'
       });
 
@@ -71,9 +75,7 @@ const Todos = () => {
     setIsEditing(!isEditing);
   };
 
-  useEffect(() => {
-    fetchTodos();
-  }, []);
+
 
   return (
     <div className="Todos">
